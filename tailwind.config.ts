@@ -20,7 +20,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -28,6 +29,10 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        mpug: {
+          red: "hsl(0 100% 50%)",
+          black: "hsl(0 0% 0%)",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -75,6 +80,8 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "grid": "grid 3s linear infinite",
+
       },
     },
   },

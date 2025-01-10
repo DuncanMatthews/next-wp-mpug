@@ -11,6 +11,7 @@ import {
   Page,
   Author,
   FeaturedMedia,
+  Course,
 } from "./wordpress.d";
 
 // WordPress Config
@@ -32,6 +33,7 @@ export async function getAllPosts(filterParams?: {
 }): Promise<Post[]> {  
   const url = getUrl("/wp-json/wp/v2/posts", { author: filterParams?.author, tags: filterParams?.tag, categories: filterParams?.category });
   const response = await fetch(url);
+  console.log("response", response)
   const posts: Post[] = await response.json();
   return posts;
 }
@@ -56,6 +58,22 @@ export async function getAllCategories(): Promise<Category[]> {
   const categories: Category[] = await response.json();
   return categories;
 }
+
+export async function getAllCourses(): Promise<Course[]> {
+  const url = getUrl("/wp-json/wp/v2/courses");
+  const response = await fetch(url);
+  const Course: Course[] = await response.json();
+  return Course;
+}
+
+
+export async function getCourseById(id: number): Promise<Course> {
+  const url = getUrl(`/wp-json/wp/v2/courses/${id}`);
+  const response = await fetch(url);
+  const course: Course = await response.json();
+  return course;
+}
+
 
 export async function getCategoryById(id: number): Promise<Category> {
   const url = getUrl(`/wp-json/wp/v2/categories/${id}`);
@@ -114,7 +132,7 @@ export async function getTagBySlug(slug: string): Promise<Tag> {
 }
 
 export async function getAllPages(): Promise<Page[]> {
-  const url = getUrl("/wp-json/wp/v2/pages");
+  const url = getUrl("/wp-json/wp/v2/pages?status=publish");
   const response = await fetch(url);
   const pages: Page[] = await response.json();
   return pages;
@@ -195,4 +213,22 @@ export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
   const response = await fetch(url);
   const featuredMedia: FeaturedMedia = await response.json();
   return featuredMedia;
+}
+
+
+export async function getCourseBySlug(slug: string): Promise<Course | null> {
+  try {
+    const url = getUrl("/wp-json/wp/v2/courses", { slug });
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch course');
+    }
+
+    const courses: Course[] = await response.json();
+    return courses[0];
+  } catch (error) {
+    console.error('Error fetching course:', error);
+    return null;
+  }
 }

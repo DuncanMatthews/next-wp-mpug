@@ -4,129 +4,151 @@
 
 @layer base {
   :root {
+    /* Base colors */
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-
+    --foreground: 0 0% 0%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-
+    --card-foreground: 0 0% 0%;
+ 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 0 0% 0%;
+ 
+    /* Black as primary */
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+ 
+    /* Light gray for secondary elements */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+ 
+    /* Subtle grays for muted content */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+ 
+    /* MPUG red as accent */
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 100%;
+ 
+    /* Standard destructive */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-
+    /* Clean borders and rings */
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 0%;
+ 
     --radius: 0.5rem;
   }
-
+ 
   .dark {
-    --background: 0 0% 3.9%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 98%;
-
-    --card: 0 0% 3.9%;
+ 
+    --card: 0 0% 0%;
     --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 3.9%;
+ 
+    --popover: 0 0% 0%;
     --popover-foreground: 0 0% 98%;
-
+ 
+    /* White as primary in dark mode */
     --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-
-    --secondary: 0 0% 14.9%;
+    --primary-foreground: 0 0% 0%;
+ 
+    --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-
+ 
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+ 
+    /* Keep red accent in dark mode */
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 100%;
+ 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+ 
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 98%;
   }
 }
-
+ 
 @layer base {
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
   }
-}
-
-@layer prose-m-none {
-  * {
-    @apply prose-headings:m-0;
+  .btn {
+    @apply bg-primary text-white; /* Changed text-primary-foreground to text-white */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .btn:hover {
+    @apply bg-primary text-white; /* Changed text-white to text-white (already correct) */
+  }
+  .btn-outline {
+    @apply bg-background text-white border-primary; /* Changed text-primary to text-white */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .btn-outline:hover {
+    @apply bg-primary text-primary-foreground;
   }
 }
 
-@layer utilities {
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-  }
+.bg-grid-black {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
 
-.fade-in {
-  -webkit-animation: fade-in 500ms cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-  animation: fade-in 500ms cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-}
-
-@-webkit-keyframes fade-in {
+@keyframes grid {
   0% {
-    -webkit-filter: blur(12px);
-    filter: blur(12px);
-    opacity: 0;
+    background-position: 0 0;
   }
-
   100% {
-    -webkit-filter: blur(0px);
-    filter: blur(0px);
-    opacity: 1;
+    background-position: 40px 40px;
   }
 }
 
-@keyframes fade-in {
-  0% {
-    -webkit-filter: blur(12px);
-    filter: blur(12px);
-    opacity: 0;
-  }
-
-  100% {
-    -webkit-filter: blur(0px);
-    filter: blur(0px);
-    opacity: 1;
-  }
+.animate-grid {
+  animation: grid 3s linear infinite;
 }
+
+/* WordPress specific content styles */
+.wp-block-image {
+  @apply my-8;
+}
+
+.wp-block-image img {
+  @apply rounded-lg;
+}
+
+.wp-block-image figcaption {
+  @apply mt-2 text-center text-sm text-muted-foreground;
+}
+
+.wp-element-caption {
+  @apply mt-2 text-center text-sm text-muted-foreground;
+}
+
+.aligncenter {
+  @apply mx-auto;
+}
+
+.alignleft {
+  @apply float-left mr-4;
+}
+
+.alignright {
+  @apply float-right ml-4;
+}
+
+.wp-block-embed {
+  @apply my-8;
+}
+
+.wp-block-embed iframe {
+  @apply w-full rounded-lg;
+}
+

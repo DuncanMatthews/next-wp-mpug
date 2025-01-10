@@ -5,6 +5,7 @@ export type Post = {
   guid: {
     rendered: string;
   };
+  featured_image_src?: string;
   modified: string;
   modified_gmt: string;
   slug: string;
@@ -23,6 +24,10 @@ export type Post = {
     protected: boolean;
   };
   author: number;
+  author_info?: {
+    display_name: string;
+    author_link: string;
+  };
   featured_media: number;
   comment_status: "open" | "closed";
   ping_status: "open" | "closed";
@@ -44,17 +49,24 @@ export type Post = {
   tags: number[];
 };
 
-export type Category = {
+export interface Category {
   id: number;
   count: number;
   description: string;
   link: string;
   name: string;
   slug: string;
-  taxonomy: "category";
+  taxonomy: string;
   parent: number;
   meta: any[];
-};
+  acf: any[];
+  _links: {
+    self: Array<{href: string}>;
+    collection: Array<{href: string}>;
+    about: Array<{href: string}>;
+    "wp:post_type": Array<{href: string}>;
+  };
+}
 
 export type Tag = {
   id: number;
@@ -237,3 +249,171 @@ type FilterBarProps = {
   selectedTag?: string;
   selectedCategory?: string;
 };
+
+
+// types/wordpress.ts
+
+export interface Course {
+  id: number;
+  date: string;
+  date_gmt: string;
+  guid: {
+    rendered: string;
+  };
+  modified: string;
+  modified_gmt: string;
+  slug: string;
+  status: string;
+  type: string;
+  link: string;
+  title: {
+    rendered: string;
+  };
+  content: {
+    rendered: string;
+    protected: boolean;
+  };
+  excerpt: {
+    rendered: string;
+    protected: boolean;
+  };
+  author: number;
+  featured_media: number;
+  template: string;
+  meta: {
+    _acf_changed: boolean;
+    _EventAllDay: boolean;
+    _EventTimezone: string;
+    _EventStartDate: string;
+    _EventEndDate: string;
+    _EventStartDateUTC: string;
+    _EventEndDateUTC: string;
+    _EventShowMap: boolean;
+    _EventShowMapLink: boolean;
+    _EventURL: string;
+    _EventCost: string;
+    _EventCostDescription: string;
+    _EventCurrencySymbol: string;
+    _EventCurrencyCode: string;
+    _EventCurrencyPosition: string;
+    _EventDateTimeSeparator: string;
+    _EventTimeRangeSeparator: string;
+    _EventOrganizerID: number[];
+    _EventVenueID: number[];
+    _OrganizerEmail: string;
+    _OrganizerPhone: string;
+    _OrganizerWebsite: string;
+    _VenueAddress: string;
+    _VenueCity: string;
+    _VenueCountry: string;
+    _VenueProvince: string;
+    _VenueState: string;
+    _VenueZip: string;
+    _VenuePhone: string;
+    _VenueURL: string;
+    _VenueStateProvince: string;
+    _VenueLat: string;
+    _VenueLng: string;
+    _VenueShowMap: boolean;
+    _VenueShowMapLink: boolean;
+    _themeisle_gutenberg_block_has_review: boolean;
+    _course_prerequisite: number;
+    _course_featured: string;
+    _sensei_self_enrollment_not_allowed: boolean;
+    disable_notification: boolean;
+    _open_access: boolean;
+    sensei_course_publish_lessons: boolean;
+    _course_theme: string;
+    sensei_course_video_autocomplete: boolean;
+    sensei_course_video_autopause: boolean;
+    sensei_course_video_required: boolean;
+    _course_expiration_type: string;
+    _course_expiration_length: number;
+    _course_expiration_period: string;
+    _course_expires_on_date: string;
+    _course_start_type: string;
+    _course_starts_on_date: string;
+    sensei_course_audience?: string;
+    sensei_course_skill_level?: string;
+    footnotes: string;
+    _course_woocommerce_product?: number[];
+    [key: string]: any;
+  };
+  projects: number[];
+  personal: number[];
+  industry: number[];
+  'course-category': number[];
+  class_list: string[];
+  acf: any[];
+  yoast_head: string;
+  yoast_head_json?: {
+    title: string;
+    description: string;
+    robots: {
+      index: string;
+      follow: string;
+      'max-snippet': string;
+      'max-image-preview': string;
+      'max-video-preview': string;
+    };
+    canonical: string;
+    og_locale: string;
+    og_type: string;
+    og_title: string;
+    og_description: string;
+    og_url: string;
+    og_site_name: string;
+    article_publisher: string;
+    article_modified_time: string;
+    og_image: Array<{
+      url: string;
+      width: number;
+      height: number;
+      type: string;
+    }>;
+    twitter_card: string;
+    twitter_site: string;
+    twitter_misc: {
+      [key: string]: string;
+    };
+    schema: {
+      '@context': string;
+      '@graph': any[];
+    };
+  };
+  course_membership_products: any[];
+  is_coteacher: boolean;
+  _links: {
+    self: Array<{
+      href: string;
+    }>;
+    collection: Array<{
+      href: string;
+    }>;
+    about: Array<{
+      href: string;
+    }>;
+    author: Array<{
+      embeddable: boolean;
+      href: string;
+    }>;
+    'wp:featuredmedia': Array<{
+      embeddable: boolean;
+      href: string;
+    }>;
+    'wp:attachment': Array<{
+      href: string;
+    }>;
+    'wp:term': Array<{
+      taxonomy: string;
+      embeddable: boolean;
+      href: string;
+    }>;
+    curies: Array<{
+      name: string;
+      href: string;
+      templated: boolean;
+    }>;
+    [key: string]: any;
+  };
+}

@@ -1,10 +1,10 @@
-/** @type {import('next').NextConfig} */
+// ... existing code ...
 const nextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: process.env.WORDPRESS_HOSTNAME,
+        hostname: process.env.WORDPRESS_HOSTNAME || "mpug.com", // Ensure this is set
         port: "",
         pathname: "/**",
       },
@@ -13,3 +13,4 @@ const nextConfig = {
 };
 
 export default nextConfig;
+// ... existing code ...
